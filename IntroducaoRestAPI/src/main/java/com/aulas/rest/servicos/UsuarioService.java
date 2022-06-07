@@ -2,6 +2,7 @@ package com.aulas.rest.servicos;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.aulas.rest.DTO.UsuarioDTO;
 import com.aulas.rest.entidades.Usuario;
 import com.aulas.rest.repositorios.UsuarioRepositorio;
+import com.aulas.rest.servicos.excecoes.RecursoNaoEncontrado;
 
 @Component
 @Service
@@ -34,7 +36,8 @@ public class UsuarioService {
 	}
 	
 	public UsuarioDTO pegarUsuario(int idusuario) {
-		  Usuario user = repo.findById(idusuario).get();
+		  Optional<Usuario> obj = repo.findById(idusuario);	
+		  Usuario user = obj.orElseThrow(() -> new RecursoNaoEncontrado("Usuário não encontrado"));
 		  return new UsuarioDTO(user);
 		}
 		

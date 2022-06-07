@@ -18,7 +18,7 @@ public class TratamentoExcecao {
 		usandoExcecaoPersonalizada()
 	}
 
-	public static void usandoExcecaoPersonalizada() trhows MinhaExcecao() {
+	public static void usandoExcecaoPersonalizada() throws MinhaExcecao() {
 		
 		
 	}
